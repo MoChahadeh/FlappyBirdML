@@ -6,6 +6,7 @@
 import pygame
 import numpy as np
 from copy import deepcopy
+from neuralnet import NeuralNet
 from bird import *
 from obstacle import *
 
