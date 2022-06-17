@@ -10,8 +10,9 @@ from obstacle import Obstacle
 
 class Bird(pygame.sprite.Sprite):
 
-    def __init__(self, *groups):
+    def __init__(self, *groups, index):
         super().__init__(*groups)
+        self.index = index
         self.pos = pygame.Vector2(20, 180)
         self.spd = pygame.Vector2(0,0)
         self.accel = pygame.Vector2(0, 0.5)
@@ -27,12 +28,17 @@ class Bird(pygame.sprite.Sprite):
         WINDOW.blit(self.sprite, (self.pos.x, self.pos.y))
     
     def update(self, WINDOW):
-        self.spd += self.accel
-        self.pos += self.spd
-        self.sprite = pygame.transform.rotate(pygame.transform.scale(self.image, (self.dim.x, self.dim.y)), -self.spd.y)
-        self.rect = self.sprite.get_rect()
 
-        self.draw(WINDOW)
+        if not self.dead:
+            self.spd += self.accel
+            self.pos += self.spd
+
+            if self.pos.y <= 0: self.pos.y = 0
+            if self.pos.y > 800: self.dead = True
+
+            self.sprite = pygame.transform.rotate(pygame.transform.scale(self.image, (self.dim.x, self.dim.y)), -self.spd.y)
+            self.rect = self.sprite.get_rect()
+            self.draw(WINDOW)
     
     def jump(self):
         self.spd.y = self.jumpingSpeed
@@ -42,6 +48,8 @@ class Bird(pygame.sprite.Sprite):
 
         for obs in obstacles:
             if (self.pos.x + self.dim.x <= obs.rect.right) and (self.pos.x + self.dim.x >= obs.rect.left) and (self.pos.y + self.dim.y >= obs.rect.top) and (self.pos.y + self.dim.y <= obs.rect.bottom):
+                print("col")
                 self.dead = True
             elif (self.pos.x + self.dim.x <= obs.upperRect.right) and (self.pos.x + self.dim.x >= obs.upperRect.left) and (self.pos.y >= obs.upperRect.top) and (self.pos.y <= obs.upperRect.bottom):
-                self.dead = True        
+                print("upper col")
+                self.dead = True       
