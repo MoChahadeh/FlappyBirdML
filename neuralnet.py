@@ -27,5 +27,16 @@ class NeuralNet():
         A2 = softmax(Z2)
 
         return A2
+    
+    def mutate(self, rate):
+        W1r, W1c = self.W1.shape
+        self.W1 = self.W1 + (self.W1 * (np.random.randn(W1r, W1c) - 0.5) / (0.5/rate))
+        b1r, b1c = self.b1.shape
+        self.b1 = self.b1 + (self.b1 * (np.random.randn(b1r, b1c) - 0.5) / (0.5/rate))
+        W2r, W2c = self.W2.shape
+        self.W2 = self.W2 + (self.W2 * (np.random.randn(W2r, W2c) - 0.5) / (0.5/rate))
+        b2r, b2c = self.b2.shape
+        self.b2 = self.b2 + (self.b2 * (np.random.randn(b2r, b2c) - 0.5) / (0.5/rate))
+
 
 
