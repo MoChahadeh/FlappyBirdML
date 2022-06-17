@@ -5,18 +5,30 @@
 
 import pygame
 from bird import *
-from obstacle import Obstacle
+from obstacle import *
 
 WIDTH, HEIGHT = 750, 375
 WINDOW = pygame.display.set_mode((WIDTH,HEIGHT))
+pygame.display.set_caption("FlappyBirdML")
+
 FPS = 60
 CLOCK = pygame.time.Clock()
 
-pygame.display.set_caption("FlappyBirdML")
+pygame.font.init()
+writer = pygame.font.SysFont("Roboto", 20)
 
 bird = Bird()
 obstacle = Obstacle()
 
+obsSpeed = 2
+
+genNumber = 1
+
+
+def drawLabels():
+    genText = writer.render("Generation "+str(genNumber), True, (255,255,255))
+    WINDOW.blit(genText, (10,10))
+    pass
 
 def mainLoop():
 
@@ -31,8 +43,9 @@ def mainLoop():
                 if event.key == pygame.K_SPACE:
                     bird.jump()
 
-        obstacle.draw(WINDOW)
+        obstacle.update(WINDOW, obsSpeed)
         bird.update(WINDOW)
+        drawLabels()
         bird.checkCollision([obstacle])
         pygame.display.update()
         CLOCK.tick(FPS)

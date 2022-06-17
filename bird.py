@@ -40,7 +40,7 @@ class Bird(pygame.sprite.Sprite):
         
         for obs in obstacles:
             if (self.pos.x + self.dim.x <= obs.rect.right) and (self.pos.x + self.dim.x >= obs.rect.left) and (self.pos.y + self.dim.y >= obs.rect.top) and (self.pos.y + self.dim.y <= obs.rect.bottom):
-                self.i += 1
-                print("COLLISION", self.i)
+                dead = True
+                print("COLLISION")
                 
         

@@ -7,12 +7,14 @@ class Obstacle(pygame.sprite.Sprite):
     def __init__(self, *groups) -> None:
         super().__init__(*groups)
 
-        self.pos = pygame.Vector2(250, 200)
+        self.pos = pygame.Vector2(750, 200)
         self.rect = pygame.rect.Rect(self.pos.x, self.pos.y, 40, 100)
     
     def draw(self, WINDOW: pygame.Surface):
-        pygame.draw.rect(WINDOW, (255,255,255), self.rect)
-        pass
+        pygame.draw.rect(WINDOW, (70,255,100), self.rect)
 
-    def update(self):
-        pass
+    def update(self, WINDOW, speed):
+
+        self.pos.x -= speed
+        self.rect.x, self.rect.y = self.pos.x,self.pos.y
+        self.draw(WINDOW)
