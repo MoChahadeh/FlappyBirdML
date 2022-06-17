@@ -23,7 +23,7 @@ class NeuralNet():
     def forward(self, inputs: np.ndarray):
 
         Z1 = np.dot(self.W1,np.transpose(inputs)) + self.b1
-        A1 = ReLU(Z1)
+        A1 = sigmoid(Z1)
 
         Z2 = np.dot(self.W2, A1) + self.b2
         A2 = sigmoid(Z2)
