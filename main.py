@@ -9,17 +9,25 @@ CLOCK = pygame.time.Clock()
 
 pygame.display.set_caption("FlappyBirdML")
 
+bird = Bird()
+
+def drawScreen():
+    WINDOW.fill((100,130,200))
+
 
 def mainLoop():
 
     running = True
-    bird = Bird()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    bird.jump()
 
-        bird.draw(WINDOW)
+        drawScreen()
+        bird.update(WINDOW)
         pygame.display.update()
         CLOCK.tick(FPS)
     
