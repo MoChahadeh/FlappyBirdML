@@ -36,8 +36,9 @@ class Bird(pygame.sprite.Sprite):
     def jump(self):
         self.spd.y = -10
 
-    def checkCollision(self, obstacles: list[Obstacle]):
+    def checkCollision(self, obstacles: pygame.sprite.Group):
         
+
         for obs in obstacles:
             if (self.pos.x + self.dim.x <= obs.rect.right) and (self.pos.x + self.dim.x >= obs.rect.left) and (self.pos.y + self.dim.y >= obs.rect.top) and (self.pos.y + self.dim.y <= obs.rect.bottom):
                 dead = True

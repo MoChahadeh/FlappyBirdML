@@ -18,11 +18,15 @@ pygame.font.init()
 writer = pygame.font.SysFont("Roboto", 20)
 
 bird = Bird()
-obstacle = Obstacle()
+
+obstacles = pygame.sprite.Group()
 
 obsSpeed = 2
-
 genNumber = 1
+
+for i in range(69):
+
+    obstacles.add(Obstacle(initX = 750 + (100*i)))
 
 
 def drawLabels():
@@ -43,10 +47,10 @@ def mainLoop():
                 if event.key == pygame.K_SPACE:
                     bird.jump()
 
-        obstacle.update(WINDOW, obsSpeed)
+        obstacles.update(WINDOW, obsSpeed)
         bird.update(WINDOW)
         drawLabels()
-        bird.checkCollision([obstacle])
+        bird.checkCollision(obstacles)
         pygame.display.update()
         CLOCK.tick(FPS)
     
