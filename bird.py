@@ -19,6 +19,7 @@ class Bird(pygame.sprite.Sprite):
 
         self.spd += self.accel
         self.pos += self.spd
+        self.sprite = pygame.transform.rotate(pygame.transform.scale(self.image, (self.dim.x, self.dim.y)), -self.spd.y)
 
         self.draw(WINDOW)
     def jump(self):
