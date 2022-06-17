@@ -36,7 +36,7 @@ def mainLoop():
     while running:
         WINDOW.fill((100,130,200))
 
-        obstacles.add(Obstacle(initX = 750 + (100*len(obstacles.sprites()))))
+        obstacles.add(Obstacle(initX = 750 + (200*len(obstacles.sprites()))))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

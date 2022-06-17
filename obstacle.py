@@ -11,6 +11,7 @@ class Obstacle(pygame.sprite.Sprite):
         self.pos = pygame.Vector2(initX, randint(180, 250))
         self.rect = pygame.rect.Rect(self.pos.x, self.pos.y, 40, 375-self.pos.y)
         self.upperRect = pygame.rect.Rect(self.pos.x, 0, 40, self.pos.y-randint(80,160))
+        self.openingPos = pygame.Vector2(self.pos.x, (self.rect.top+self.upperRect.bottom)/2)
         self.color = (70,255,100)
         self.dead = False
     
@@ -24,6 +25,7 @@ class Obstacle(pygame.sprite.Sprite):
             self.pos.x -= speed
             self.rect.x= self.pos.x
             self.upperRect.x = self.pos.x
+            self.openingPos.x = self.pos.x
             self.draw(WINDOW)
 
             if(self.pos.x < -30):

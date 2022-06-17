@@ -12,7 +12,7 @@ class Bird(pygame.sprite.Sprite):
 
     def __init__(self, *groups):
         super().__init__(*groups)
-        self.pos = pygame.Vector2(250, 180)
+        self.pos = pygame.Vector2(20, 180)
         self.spd = pygame.Vector2(0,0)
         self.accel = pygame.Vector2(0, 0.5)
         self.image = pygame.image.load(os.path.join("images","bird.png"))
