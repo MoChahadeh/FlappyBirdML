@@ -5,6 +5,7 @@
 
 import pygame
 from bird import *
+from obstacle import Obstacle
 
 WIDTH, HEIGHT = 750, 375
 WINDOW = pygame.display.set_mode((WIDTH,HEIGHT))
@@ -14,6 +15,7 @@ CLOCK = pygame.time.Clock()
 pygame.display.set_caption("FlappyBirdML")
 
 bird = Bird()
+obstacle = Obstacle()
 
 
 def mainLoop():
@@ -29,7 +31,9 @@ def mainLoop():
                 if event.key == pygame.K_SPACE:
                     bird.jump()
 
+        obstacle.draw(WINDOW)
         bird.update(WINDOW)
+        bird.checkCollision([obstacle])
         pygame.display.update()
         CLOCK.tick(FPS)
     
