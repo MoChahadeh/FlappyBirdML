@@ -1,4 +1,8 @@
-from psutil import WINDOWS
+#   June 17th, 2022, 4:14AM Friday
+#   Mohamad Chahadeh, ©2022
+#   https://MoChahadeh.github.io/
+#   https://twitter.com/MoChahadeh
+
 import pygame
 import os
 
