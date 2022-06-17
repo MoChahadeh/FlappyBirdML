@@ -16,10 +16,11 @@ class Bird(pygame.sprite.Sprite):
         self.spd = pygame.Vector2(0,0)
         self.accel = pygame.Vector2(0, 0.5)
         self.image = pygame.image.load(os.path.join("images","bird.png"))
-        self.dim = pygame.Vector2(35,28)
+        self.dim = pygame.Vector2(30,24)
         self.sprite = pygame.transform.scale(self.image, (self.dim.x, self.dim.y))
         self.rect = self.sprite.get_rect()
         self.dead = False
+        self.jumpingSpeed = -6
         self.i = 0
 
     def draw(self, WINDOW: pygame.Surface):
@@ -34,14 +35,13 @@ class Bird(pygame.sprite.Sprite):
         self.draw(WINDOW)
     
     def jump(self):
-        self.spd.y = -10
+        self.spd.y = self.jumpingSpeed
 
     def checkCollision(self, obstacles: pygame.sprite.Group):
         
 
         for obs in obstacles:
             if (self.pos.x + self.dim.x <= obs.rect.right) and (self.pos.x + self.dim.x >= obs.rect.left) and (self.pos.y + self.dim.y >= obs.rect.top) and (self.pos.y + self.dim.y <= obs.rect.bottom):
-                dead = True
-                print("COLLISION")
-                
-        
+                self.dead = True
+            elif (self.pos.x + self.dim.x <= obs.upperRect.right) and (self.pos.x + self.dim.x >= obs.upperRect.left) and (self.pos.y >= obs.upperRect.top) and (self.pos.y <= obs.upperRect.bottom):
+                self.dead = True        

@@ -24,10 +24,6 @@ obstacles = pygame.sprite.Group()
 obsSpeed = 2
 genNumber = 1
 
-for i in range(69):
-
-    obstacles.add(Obstacle(initX = 750 + (100*i)))
-
 
 def drawLabels():
     genText = writer.render("Generation "+str(genNumber), True, (255,255,255))
@@ -35,10 +31,12 @@ def drawLabels():
     pass
 
 def mainLoop():
-
+    numOfObs = 0
     running = True
     while running:
         WINDOW.fill((100,130,200))
+
+        obstacles.add(Obstacle(initX = 750 + (100*len(obstacles.sprites()))))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
