@@ -50,9 +50,10 @@ class Bird(pygame.sprite.Sprite):
         # Checks for collisions with every obstacles
         # collision logic can be better but it works for now..
         for obs in obstacles:
-            if (self.pos.x + self.dim.x <= obs.rect.right) and (self.pos.x + self.dim.x >= obs.rect.left) and (self.pos.y + self.dim.y >= obs.rect.top) and (self.pos.y + self.dim.y <= obs.rect.bottom):
-                print("col")
+             
+            if(self.pos.x + self.dim.x > obs.rect.left and self.pos.x < obs.rect.right) and (self.pos.y < obs.rect.bottom and self.pos.y+self.dim.y > obs.rect.top):
+                print("lower col")
                 self.dead = True
-            elif (self.pos.x + self.dim.x <= obs.upperRect.right) and (self.pos.x + self.dim.x >= obs.upperRect.left) and (self.pos.y >= obs.upperRect.top) and (self.pos.y <= obs.upperRect.bottom):
+            if(self.pos.x+ self.dim.x > obs.upperRect.left and self.pos.x < obs.upperRect.right) and (self.pos.y < obs.upperRect.bottom and self.pos.y+self.dim.y > obs.upperRect.top):
                 print("upper col")
-                self.dead = True       
+                self.dead = True
