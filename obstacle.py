@@ -7,7 +7,6 @@
 import pygame
 from random import randint
 from settings import *
-import os
 
 # Obstacle class
 class Obstacle(pygame.sprite.Sprite):
@@ -37,7 +36,7 @@ class Obstacle(pygame.sprite.Sprite):
             self.openingPos.x = self.pos.x  # changing the opening position
             self.draw(WINDOW)   # drawing method define above
 
-            if(self.pos.x < -30):   # if obstacle passes the left of the screen..
+            if(self.pos.x < -40):   # if obstacle passes the left of the screen..
                 self.dead = True    # sets dead variable to true, disabling the update method...
-                obstacles.add(Obstacle(initX = 750 + (150*5)))
+                obstacles.add(Obstacle(initX = WIDTH + (150*int(genPopulation/2))))
                 self.kill()     # remove the obstacle from every sprite group it's in..

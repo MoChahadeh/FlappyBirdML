@@ -1,4 +1,5 @@
 import pygame
+from neuralnet import NeuralNet
 
 #   Window size
 WIDTH, HEIGHT = 750, 375
