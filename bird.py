@@ -6,6 +6,7 @@
 #   Libraries and classes
 import pygame
 import os
+from settings import *
 
 
 # Bird Class

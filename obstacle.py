@@ -6,6 +6,7 @@
 #   libraries and classes
 import pygame
 from random import randint
+from settings import *
 import os
 
 # Obstacle class
