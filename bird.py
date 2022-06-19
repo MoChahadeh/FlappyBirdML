@@ -26,10 +26,10 @@ class Bird(pygame.sprite.Sprite):
         self.dead = False   # death state of bird
         self.jumpingSpeed = -6  # strength of jump, minus is up..
 
-    def draw(self, WINDOW: pygame.Surface):
+    def draw(self):
         WINDOW.blit(self.sprite, (self.pos.x, self.pos.y))  # Drawing the sprite on the pygame WINDOW
     
-    def update(self, WINDOW):   # update method for bird, called each frame through the group's update method..
+    def update(self):   # update method for bird, called each frame through the group's update method..
 
         if not self.dead:
             self.spd += self.accel  # increasing the speed by the acceleration (Applying gravity in this case..)
@@ -40,12 +40,12 @@ class Bird(pygame.sprite.Sprite):
 
             self.sprite = pygame.transform.rotate(pygame.transform.scale(self.image, (self.dim.x, self.dim.y)), -self.spd.y)    # rotating the bird with the Y speed, making that cool flying effect
             self.rect = self.sprite.get_rect()  # refreshing the rect of the sprite
-            self.draw(WINDOW)   # drawing method defined above..
+            self.draw()   # drawing method defined above..
     
     def jump(self):
         self.spd.y = self.jumpingSpeed  # adds jumping speed to spd.y
 
-    def checkCollision(self, obstacles: pygame.sprite.Group):   #collision checker for bird
+    def checkCollision(self):   #collision checker for bird
         # Checks for collisions with every obstacles
         # collision logic can be better but it works for now..
         for obs in obstacles:

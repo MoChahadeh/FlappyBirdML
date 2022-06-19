@@ -59,7 +59,7 @@ def mainLoop():
                 if(decision > 0.5): currentBird.jump()
 
                 #   checking for collisions for current Bird, see Bird Class
-                currentBird.checkCollision(obstacles)
+                currentBird.checkCollision()
 
                 #   adds one point of fitness in each frame the bird plays
                 fitness[currentBird.index] += 1
@@ -76,8 +76,8 @@ def mainLoop():
             restartAndMutate()
             
 
-        obstacles.update(WINDOW, obsSpeed, obstacles)  #   calls the update method for all obstacles in group
-        birds.update(WINDOW)    #   calls the update method for all birds in group, the death checking is done inside the bird's update method..
+        obstacles.update()  #   calls the update method for all obstacles in group
+        birds.update()    #   calls the update method for all birds in group, the death checking is done inside the bird's update method..
         drawLabels()    #   calling the label drawing method
         pygame.display.update()     #refreshed the screen with the new states
         CLOCK.tick(FPS)     #   sets the frame rate of the game

@@ -22,19 +22,19 @@ class Obstacle(pygame.sprite.Sprite):
         self.color = (70,255,100)   # color of obstacle, light green
         self.dead = False   # death state of obstacle
     
-    def draw(self, WINDOW: pygame.Surface):
+    def draw(self):
         pygame.draw.rect(WINDOW, self.color, self.rect)     # drawing the lower rect
         pygame.draw.rect(WINDOW, self.color, self.upperRect)    # drawinght the upper rect
 
-    def update(self, WINDOW, speed, obstacles: pygame.sprite.Group):
+    def update(self):
 
         if not self.dead:   # checks if sprite is dead, might seem redundant because I'm using .kill() but guards from any errors if I change the way I update them..
             
-            self.pos.x -= speed     # changing the position with the speed
+            self.pos.x -= obsSpeed     # changing the position with the speed
             self.rect.x= self.pos.x # changing the lower rect position
             self.upperRect.x = self.pos.x   # changing the upper rect position
             self.openingPos.x = self.pos.x  # changing the opening position
-            self.draw(WINDOW)   # drawing method define above
+            self.draw()   # drawing method define above
 
             if(self.pos.x < -40):   # if obstacle passes the left of the screen..
                 self.dead = True    # sets dead variable to true, disabling the update method...
