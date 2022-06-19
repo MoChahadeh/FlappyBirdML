@@ -45,6 +45,7 @@ for i in range(genPopulation):
     nets.append(NeuralNet(2, 5, 1))
     fitness.append(0)
     birds.add(Bird(index = i))
+    obstacles.add(Obstacle(initX = WIDTH + (150*i)))
 
 #   drawing text on the screen
 def drawLabels():
@@ -65,7 +66,6 @@ def mainLoop():
     running = True
     while running:
         WINDOW.fill((100,130,200))
-        obstacles.add(Obstacle(initX = 750 + (150*len(obstacles.sprites()))))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:   #   Quitting Event
                 running = False
@@ -103,7 +103,7 @@ def mainLoop():
             restartAndMutate()
             
 
-        obstacles.update(WINDOW, obsSpeed)  #   calls the update method for all obstacles in group
+        obstacles.update(WINDOW, obsSpeed, obstacles)  #   calls the update method for all obstacles in group
         birds.update(WINDOW)    #   calls the update method for all birds in group, the death checking is done inside the bird's update method..
         drawLabels()    #   calling the label drawing method
         pygame.display.update()     #refreshed the screen with the new states
@@ -126,7 +126,7 @@ def restartAndMutate():
         fitness.append(0)
         birds.add(Bird(index = i))
         dead.append(False)
-
+        obstacles.add(Obstacle(initX = WIDTH + (150*i)))
         # Copies one of the three best performing neurons and appends it the list of neurons
         nets[i] = deepcopy(nets[maximums[i%3]])
         # Mutates the newly assigned neural net by a random rate between -15% and +15%
