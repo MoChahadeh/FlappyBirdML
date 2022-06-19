@@ -1,3 +1,8 @@
+#   June 19th, 2022, 4:30PM Friday
+#   Mohamad Chahadeh, ©2022
+#   https://MoChahadeh.github.io/
+#   https://twitter.com/MoChahadeh
+
 import pygame
 from neuralnet import NeuralNet
 
