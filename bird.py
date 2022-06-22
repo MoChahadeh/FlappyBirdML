@@ -36,7 +36,7 @@ class Bird(pygame.sprite.Sprite):
             self.pos += self.spd    # increasing the position by the speed
 
             if self.pos.y <= 0: self.pos.y = 0  # upper constraint for birds, cannot go above the window 
-            if self.pos.y > WIDTH+100: self.dead = True   # lower contraint for birds, cannot go lower than 100px under the screen
+            if self.pos.y > HEIGHT+50: self.dead = True   # lower contraint for birds, cannot go lower than 50px under the screen
 
             self.sprite = pygame.transform.rotate(pygame.transform.scale(self.image, (self.dim.x, self.dim.y)), -self.spd.y)    # rotating the bird with the Y speed, making that cool flying effect
             self.rect = self.sprite.get_rect()  # refreshing the rect of the sprite
