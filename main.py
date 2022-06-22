@@ -18,7 +18,10 @@ for i in range(genPopulation):
     nets.append(NeuralNet(2, 5, 1))
     fitness.append(0)
     birds.add(Bird(index = i))
-    obstacles.add(Obstacle(initX = WIDTH + (150*i)))
+
+
+for i in range(int(WIDTH/(170)) + 1):
+    obstacles.add(Obstacle(initX = WIDTH + (170*i)))
 
 #   drawing text on the screen
 def drawLabels():
@@ -99,11 +102,12 @@ def restartAndMutate():
         fitness.append(0)
         birds.add(Bird(index = i))
         dead.append(False)
-        obstacles.add(Obstacle(initX = WIDTH + (150*i)))
         # Copies one of the three best performing neurons and appends it the list of neurons
         nets[i] = deepcopy(nets[maximums[i%3]])
         # Mutates the newly assigned neural net by a random rate between -15% and +15%
         nets[i].mutate(0.15)
+    for i in range(int(WIDTH/170) + 1):
+        obstacles.add(Obstacle(initX = WIDTH + (170*i)))
 
 
     
