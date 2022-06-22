@@ -26,7 +26,8 @@ birds = pygame.sprite.Group()
 #   Settings for gameplay, population, speed, and number of current generation
 obsSpeed = 2
 genNumber = 1
-genPopulation = 10
+genPopulation = 20
+minOpening = 70
 
 
 #   State variables that get reset at the start every generation
